@@ -1666,12 +1666,7 @@ export function useFeedForUser(options: {enabled: boolean}) {
         async queryFn({pageParam}: {pageParam?: string}) {
             const siteUrl = await getSiteUrl();
             const api = createActivityPubAPI('index', siteUrl);
-            return api.getFeed(pageParam).then((response) => {
-                return {
-                    posts: response.posts.map(mapPostToActivity),
-                    next: response.next
-                };
-            });
+            return api.getFeed(pageParam);
         },
         getNextPageParam(prevPage) {
             return prevPage.next;
@@ -1752,10 +1747,7 @@ export function usePostsByAccount(profileHandle: string, options: {enabled: bool
             const siteUrl = await getSiteUrl();
             const api = createActivityPubAPI('index', siteUrl);
             return api.getPostsByAccount(profileHandle, pageParam).then((response) => {
-                return {
-                    posts: response.posts.map(mapPostToActivity),
-                    next: response.next
-                };
+                return response;
             }).catch(() => {
                 return {
                     posts: [],
@@ -1805,12 +1797,7 @@ export function usePostsLikedByAccount(options: {enabled: boolean}) {
         async queryFn({pageParam}: {pageParam?: string}) {
             const siteUrl = await getSiteUrl();
             const api = createActivityPubAPI('index', siteUrl);
-            return api.getPostsLikedByAccount(pageParam).then((response) => {
-                return {
-                    posts: response.posts.map(mapPostToActivity),
-                    next: response.next
-                };
-            });
+            return api.getPostsLikedByAccount(pageParam);
         },
         getNextPageParam(prevPage) {
             return prevPage.next;
