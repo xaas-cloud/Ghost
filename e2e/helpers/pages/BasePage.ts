@@ -21,7 +21,7 @@ export class BasePage {
         }
     }
 
-    async goto(url = null) {
+    async goto(url: string | null = null) {
         const urlToVisit = url || this.pageUrl;
         await this.page.goto(urlToVisit);
     }

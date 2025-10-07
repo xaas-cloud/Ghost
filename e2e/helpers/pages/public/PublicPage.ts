@@ -79,7 +79,7 @@ export class PublicPage extends BasePage {
         });
     }
 
-    async goto(url = null): Promise<void> {
+    async goto(url: string | null = null): Promise<void> {
         await this.enableAnalyticsRequests();
         await super.goto(url);
     }
